@@ -32,15 +32,3 @@ def upload_multi_images(unique_id):
     img_s3.title = img.title
     img_s3.save()
     img_images.close()
-
-
-@shared_task
-def create_random_user_accounts(total):
-    for i in range(total):
-        username = get_random_string(10)
-        email = '{}@111.com'.format(username)
-        password = get_random_string(50)
-        phone = get_random_string(10)
-        User.objects.create_user(
-            username=username, email=email, password=password, phone=phone)
-    return '{} random users created with success!'.format(total)

@@ -84,6 +84,10 @@ INSTALLED_APPS = [
     # celery
     'widget_tweaks',
 
+    # channels
+    'channels',
+
+
 
 
 
@@ -310,3 +314,23 @@ IMAGES_DIR = os.path.join(MEDIA_ROOT, 'images')
 
 if not os.path.exists(MEDIA_ROOT) or not os.path.exists(IMAGES_DIR):
     os.makedirs(IMAGES_DIR)
+
+
+# channels
+ASGI_APPLICATION = "gal_pro.routing.application"
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [("localhost", 6379)],
+        },
+    },
+}
+
+
+# upload handler
+FILE_UPLOAD_HANDLERS = [
+    'django.core.files.uploadhandler.MemoryFileUploadHandler',
+    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+]

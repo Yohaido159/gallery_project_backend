@@ -1,8 +1,7 @@
-from django.contrib import admin
-from django.urls import path, include, re_path
+from django.urls import path
 
-from .views import GenerateRandomUserView
+from . import views
 
 urlpatterns = [
-    path("", GenerateRandomUserView.as_view(), name="home"),
+    path("te/", views.te)
 ]
